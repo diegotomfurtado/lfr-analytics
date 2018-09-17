@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group = 'com.liferay.engineer.analytics'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+
+	// https://mvnrepository.com/artifact/org.easetech/easytest-core
+	compile group: 'org.easetech', name: 'easytest-core', version: '1.4.0'
+    
+	// Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+    
+    // https://mvnrepository.com/artifact/junit/junit
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+	
+	// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
+	
+	// https://mvnrepository.com/artifact/commons-io/commons-io
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+	
+	compile group: "com.liferay.gs", name: "frw-selenium-commons", version: "2.3.0"
+	
+}
+
