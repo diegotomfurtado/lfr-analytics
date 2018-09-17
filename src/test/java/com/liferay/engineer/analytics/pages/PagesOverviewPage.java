@@ -3,7 +3,6 @@ package com.liferay.engineer.analytics.pages;
 import static org.openqa.selenium.By.xpath;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
@@ -15,23 +14,19 @@ import com.liferay.engineer.analytics.utils.CommonMethods;
 public class PagesOverviewPage extends CommonMethods {
 
 	private static final By itemActiveByVisitorsBehaviorLocator = xpath(
-			"//*[@class=\'card analytics-metrics-card\']/descendant::button[contains(@class,\'button-root\')]");
+			"//*[@class=\'card analytics-metrics-card\']//*[contains(@class,\'button-root\')]");
 	private static final By itemActiveByViewsBySegmentsLocator = xpath(
-			".//*[@class=\'card analytics-grouped-barchart-card\']/descendant::button[contains(@class,\'button-root\')]");
+			"//*[@class=\'card analytics-grouped-barchart-card\']//*[contains(@class,\'button-root\')]");
 	private static final By itemActiveByLocationsLocator = xpath(
 			".//*[@class=\'card analytics-locations-card\']/descendant::button");
 	private static final By itemActiveByViewsByTechnologyLocator = xpath(
-			"//div[text()=\"Views by Technology\"]/following::button[@class=\"button-root btn btn-sm btn-secondary dropdown-toggle border-0\"]");
-	private static final By itemActiveByAssetsLocator = xpath("//div[text()=\"Assets\"]/following::button");
+			"//*[text()=\'Views by Technology\']/following::button[1]");
+	private static final By itemActiveByAssetsLocator = xpath(
+			"//*[text()=\'Assets\']/following::button");
 	private static final By firstAssertLinksToWebContentLocator = xpath(
-			"//*[@class=\"font-weight-semibold text-truncate-inline\"]");
+			"//*[@class=\'font-weight-semibold text-truncate-inline\']");
 	private static final By erroMessageNoDataMatchingFromAssetsCardLocator = xpath(
-			"//div[@class=\"m-auto pl-4 pr-4 position-relative text-center\"]");
-
-	public PagesOverviewPage(WebDriver browser) {
-		super(browser);
-		// TODO Auto-generated constructor stub
-	}
+			"//*[@class=\'m-auto pl-4 pr-4 position-relative text-center\']");
 
 	public String checkDropdownItemActiveByVisitorsBehavior() {
 
@@ -58,10 +53,9 @@ public class PagesOverviewPage extends CommonMethods {
 		return returnElementFromPage(itemActiveByAssetsLocator);
 	}
 
-	public WebContentFromAssestsPage selectLinkFromAssertCardList() {
+	public void selectLinkFromAssertCardList() {
 
 		clickOnLink(firstAssertLinksToWebContentLocator);
-		return new WebContentFromAssestsPage(browser);
 	}
 
 	public String erroMessageNoDataMactchingFromAssestCard() {

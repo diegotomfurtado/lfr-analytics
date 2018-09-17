@@ -1,19 +1,22 @@
 package com.liferay.engineer.analytics.tests;
 
+import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
 import static org.junit.Assert.assertTrue;
+
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
 import com.liferay.engineer.analytics.execptions.NoDataMatchingException;
+import com.liferay.engineer.analytics.pages.AnalyticsCloudHomePage;
 import com.liferay.engineer.analytics.pages.AnalyticsCloudProjectPage;
 import com.liferay.engineer.analytics.pages.PagesOverviewPage;
 import com.liferay.engineer.analytics.pages.PagesPage;
 import com.liferay.engineer.analytics.pages.WebContentFromAssestsPage;
 import com.liferay.engineer.analytics.utils.CommonMethods;
-import com.liferay.engineer.analytics.utils.SetUp;
+import com.liferay.engineer.analytics.utils.SeleniumReadProperties;
 
 /*
 *
@@ -22,26 +25,28 @@ import com.liferay.engineer.analytics.utils.SetUp;
 */
 public class Cerebro_1135Test {
 
-	private WebDriver browser;
-	PagesPage pagesPage = new PagesPage(browser);
-	PagesOverviewPage pagesOverviewPage = new PagesOverviewPage(browser);
-	AnalyticsCloudProjectPage analyticsCloudProjectPage = new AnalyticsCloudProjectPage(browser);
-	WebContentFromAssestsPage webContentFromAssestsPage = new WebContentFromAssestsPage(browser);
-	
+	private final PagesPage pagesPage = new PagesPage();
+	private final PagesOverviewPage pagesOverviewPage = new PagesOverviewPage();
+	private final AnalyticsCloudProjectPage analyticsCloudProjectPage = new AnalyticsCloudProjectPage();
+	private final WebContentFromAssestsPage webContentFromAssestsPage = new WebContentFromAssestsPage();
+	private final AnalyticsCloudHomePage analyticsCloudHomePage = new AnalyticsCloudHomePage();
 
 	@Before
 	public void setUpOpenBrowser() {
 
-		browser = SetUp.setUp();
-		new CommonMethods(browser).shouldBeAccessTheLocalDevelopment();
+		SeleniumReadProperties.ConfigFileReader();
 		
+		DRIVER.manage().timeouts().implicitlyWait(SeleniumReadProperties.getImplicitlyWait(), TimeUnit.SECONDS);
+		DRIVER.get(SeleniumReadProperties.getApplicationUrl());
+		
+		new CommonMethods().shouldBeAccessTheLocalDevelopment();
 	}
 
 	@After
 	public void teardown() {
-		browser.close();
-		pagesPage.switchToNewWindowPage();
-		browser.close();
+		DRIVER.close();
+		CommonMethods.switchToNewWindowPage();
+		DRIVER.close();
 	}
 	
 	/*
@@ -53,11 +58,10 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			analyticsCloudProjectPage
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast24HoursPeriodTimeFromPagesDropdownList()
-			.selectLinkFromPagesList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
+			pagesPage.selectLinkFromPagesList();
 			
 			assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
@@ -78,11 +82,10 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			analyticsCloudProjectPage
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectYesterdayPeriodTimeFromPagesDropdownList()
-			.selectLinkFromPagesList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
+			pagesPage.selectLinkFromPagesList();
 			
 			assertTrue("Yesterday".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Yesterday".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
@@ -103,11 +106,10 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			analyticsCloudProjectPage
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast7DaysPeriodTimeFromPagesDropdownList()
-			.selectLinkFromPagesList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
+			pagesPage.selectLinkFromPagesList();
 			
 			assertTrue("Last 7 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 7 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
@@ -128,11 +130,10 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			new AnalyticsCloudProjectPage(browser)
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast28DaysPeriodTimeFromPagesDropdownList()
-			.selectLinkFromPagesList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
+			pagesPage.selectLinkFromPagesList();
 			
 			assertTrue("Last 28 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 28 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
@@ -142,8 +143,8 @@ public class Cerebro_1135Test {
 
 		} catch (Exception e) {
 			
-			System.out.println(new PagesPage(browser).erroMessageNoDataMatching());
-			throw new NoDataMatchingException(new PagesPage(browser).erroMessageNoDataMatching());
+			System.out.println(pagesPage.erroMessageNoDataMatching());
+			throw new NoDataMatchingException(pagesPage.erroMessageNoDataMatching());
 		
 		}
 	}
@@ -153,11 +154,10 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			new AnalyticsCloudProjectPage(browser)
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast30DaysPeriodTimeFromPagesDropdownList()
-			.selectLinkFromPagesList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
+			pagesPage.selectLinkFromPagesList();
 			
 			assertTrue("Last 30 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 30 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
@@ -167,8 +167,8 @@ public class Cerebro_1135Test {
 
 		} catch (Exception e) {
 
-			System.out.println(new PagesPage(browser).erroMessageNoDataMatching());
-			throw new NoDataMatchingException(new PagesPage(browser).erroMessageNoDataMatching());
+			System.out.println(pagesPage.erroMessageNoDataMatching());
+			throw new NoDataMatchingException(pagesPage.erroMessageNoDataMatching());
 
 		}
 	}
@@ -178,11 +178,10 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			new AnalyticsCloudProjectPage(browser)
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast90DayPeriodTimeFromPagesDropdownList()
-			.selectLinkFromPagesList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
+			pagesPage.selectLinkFromPagesList();
 			
 			assertTrue("Last 90 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 90 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
@@ -192,8 +191,8 @@ public class Cerebro_1135Test {
 
 		} catch (Exception e) {
 			
-			System.out.println(new PagesPage(browser).erroMessageNoDataMatching());
-			throw new NoDataMatchingException(new PagesPage(browser).erroMessageNoDataMatching());
+			System.out.println(pagesPage.erroMessageNoDataMatching());
+			throw new NoDataMatchingException(pagesPage.erroMessageNoDataMatching());
 			
 		}
 	}
@@ -208,14 +207,13 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			analyticsCloudProjectPage
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast24HoursPeriodTimeFromPagesDropdownList()
-			.orderByViewsFromOrderDropdown()
-			.changeAPerpectiveOfCursor()
-			.selectLinkFromPagesList()
-			.selectLinkFromAssertCardList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
+			pagesPage.orderByViewsFromOrderDropdown();
+			pagesPage.changeAPerpectiveOfCursor();
+			pagesPage.selectLinkFromPagesList();
+			pagesOverviewPage.selectLinkFromAssertCardList();
 			
 			assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
@@ -225,8 +223,8 @@ public class Cerebro_1135Test {
 			
 		} catch (Exception e) {
 			
-			System.out.println(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
-			throw new NoDataMatchingException(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
+			System.out.println(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
+			throw new NoDataMatchingException(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
 			
 		}
 	}
@@ -236,14 +234,13 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			analyticsCloudProjectPage
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectYesterdayPeriodTimeFromPagesDropdownList()
-			.orderByViewsFromOrderDropdown()
-			.changeAPerpectiveOfCursor()
-			.selectLinkFromPagesList()
-			.selectLinkFromAssertCardList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
+			pagesPage.orderByViewsFromOrderDropdown();
+			pagesPage.changeAPerpectiveOfCursor();
+			pagesPage.selectLinkFromPagesList();
+			pagesOverviewPage.selectLinkFromAssertCardList();
 			
 			assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
@@ -264,14 +261,13 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			analyticsCloudProjectPage
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast7DaysPeriodTimeFromPagesDropdownList()
-			.orderByViewsFromOrderDropdown()
-			.changeAPerpectiveOfCursor()
-			.selectLinkFromPagesList()
-			.selectLinkFromAssertCardList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
+			pagesPage.orderByViewsFromOrderDropdown();
+			pagesPage.changeAPerpectiveOfCursor();
+			pagesPage.selectLinkFromPagesList();
+			pagesOverviewPage.selectLinkFromAssertCardList();
 			
 			assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
@@ -281,8 +277,8 @@ public class Cerebro_1135Test {
 
 		} catch (Exception e) {
 			
-			System.out.println(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
-			throw new NoDataMatchingException(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
+			System.out.println(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
+			throw new NoDataMatchingException(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
 			
 		}
 	}
@@ -292,14 +288,13 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			new AnalyticsCloudProjectPage(browser)
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast28DaysPeriodTimeFromPagesDropdownList()
-			.orderByViewsFromOrderDropdown()
-			.changeAPerpectiveOfCursor()
-			.selectLinkFromPagesList()
-			.selectLinkFromAssertCardList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
+			pagesPage.orderByViewsFromOrderDropdown();
+			pagesPage.changeAPerpectiveOfCursor();
+			pagesPage.selectLinkFromPagesList();
+			pagesOverviewPage.selectLinkFromAssertCardList();
 			
 			assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
@@ -309,8 +304,8 @@ public class Cerebro_1135Test {
 
 		} catch (Exception e) {
 			
-			System.out.println(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
-			throw new NoDataMatchingException(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
+			System.out.println(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
+			throw new NoDataMatchingException(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
 		
 		}
 	}
@@ -320,14 +315,13 @@ public class Cerebro_1135Test {
 
 		try {
 			
-			new AnalyticsCloudProjectPage(browser)
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast30DaysPeriodTimeFromPagesDropdownList()
-			.orderByViewsFromOrderDropdown()
-			.changeAPerpectiveOfCursor()
-			.selectLinkFromPagesList()
-			.selectLinkFromAssertCardList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
+			pagesPage.orderByViewsFromOrderDropdown();
+			pagesPage.changeAPerpectiveOfCursor();
+			pagesPage.selectLinkFromPagesList();
+			pagesOverviewPage.selectLinkFromAssertCardList();
 			
 			assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
@@ -337,8 +331,8 @@ public class Cerebro_1135Test {
 
 		} catch (Exception e) {
 
-			System.out.println(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
-			throw new NoDataMatchingException(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
+			System.out.println(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
+			throw new NoDataMatchingException(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
 
 		}
 	}
@@ -348,14 +342,13 @@ public class Cerebro_1135Test {
 		
 		try {
 			
-			new AnalyticsCloudProjectPage(browser)
-			.selectCustomerLiferayComProject()
-			.clickOnPagesLinkFromMenu()
-			.selectLast90DayPeriodTimeFromPagesDropdownList()
-			.orderByViewsFromOrderDropdown()
-			.changeAPerpectiveOfCursor()
-			.selectLinkFromPagesList()
-			.selectLinkFromAssertCardList();
+			analyticsCloudProjectPage.selectCustomerLiferayComProject();
+			analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+			pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
+			pagesPage.orderByViewsFromOrderDropdown();
+			pagesPage.changeAPerpectiveOfCursor();
+			pagesPage.selectLinkFromPagesList();
+			pagesOverviewPage.selectLinkFromAssertCardList();
 			
 			assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
 			assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
@@ -365,15 +358,10 @@ public class Cerebro_1135Test {
 
 		} catch (Exception e) {
 			
-			System.out.println(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
-			throw new NoDataMatchingException(new PagesOverviewPage(browser).erroMessageNoDataMactchingFromAssestCard());
+			System.out.println(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
+			throw new NoDataMatchingException(pagesOverviewPage.erroMessageNoDataMactchingFromAssestCard());
 			
 		}
 	}
-	
-	/*
-	 * Scenario: Date filter of children propagated from their parent won't be lost when using the list pagination
-	 * */
-	
 	
 }

@@ -3,7 +3,6 @@ package com.liferay.engineer.analytics.pages;
 import static org.openqa.selenium.By.xpath;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
@@ -15,20 +14,15 @@ import com.liferay.engineer.analytics.utils.CommonMethods;
 public class WebContentFromAssestsPage extends CommonMethods {
 
 	private static final By itemActiveByVisitorsBehaviorLocator = xpath(
-			"//*[@class=\'card analytics-metrics-card\']/descendant::button[contains(@class,\'button-root\')]");
+			"//*[@class=\'card analytics-metrics-card\']//*[contains(@class,\'button-root\')]");
 	private static final By itemActiveByViewsBySegmentsLocator = xpath(
-			".//*[@class=\'card analytics-grouped-barchart-card\']/descendant::button[contains(@class,\'button-root\')]");
+			".//*[@class=\'card analytics-grouped-barchart-card\']//*[contains(@class,\'button-root\')]");
 	private static final By itemActiveByLocationsLocator = xpath(
 			".//*[@class=\'card analytics-locations-card\']/descendant::button");
 	private static final By itemActiveByViewsByTechnologyLocator = xpath(
 			"//div[text()=\"Views by Technology\"]/following::div[2]/button");
 	private static final By itemActiveByAssetAppearsOnLocator = xpath(
 			"//div[text()=\"Asset Appears On\"]/following::div[2]/button");
-
-	public WebContentFromAssestsPage(WebDriver browser) {
-		super(browser);
-		// TODO Auto-generated constructor stub
-	}
 
 	public String checkDropdownItemActiveByVisitorsBehavior() {
 		

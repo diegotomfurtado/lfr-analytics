@@ -40,7 +40,7 @@ public class SeleniumReadProperties {
 	}
 	
 	public static long getImplicitlyWait() {		
-		String implicitlyWait = properties.getProperty("implicitlyWait");
+		String implicitlyWait = properties.getProperty("time-out");
 		if(implicitlyWait != null) return Long.parseLong(implicitlyWait);
 		else throw new RuntimeException("implicitlyWait not specified in the Configuration.properties file.");		
 	}

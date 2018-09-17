@@ -1,13 +1,13 @@
 package com.liferay.engineer.analytics.utils;
 
+import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
-
 import com.liferay.engineer.analytics.pages.HomePage;
+import com.liferay.engineer.analytics.pages.LoginPage;
 
 /*
 *
@@ -16,67 +16,59 @@ import com.liferay.engineer.analytics.pages.HomePage;
 */
 public class CommonMethods {
 
-	public static WebDriver browser;
-	private WebDriverWait waitDriver = null;
+	private static WebDriverWait waitDriver = null;
 
-	public CommonMethods(WebDriver browser) {
-		CommonMethods.browser = browser;
-		// TODO Auto-generated constructor stub
-	}
-
-	public void clickOnButton(By locator) {
+	public static void clickOnButton(By locator) {
 		waitElementVisibilityAndBeClickable(locator);
 		DRIVER.findElement(locator).click();
 	}
 
-	public void clickOnLink(By locator) {
+	public static void clickOnLink(By locator) {
 		waitElementVisibilityAndBeClickable(locator);
-		browser.findElement(locator).click();
+		DRIVER.findElement(locator).click();
 	}
 
-	public String returnElementFromPage(By locator) {
-		return browser.findElement(locator).getText();
+	public static String returnElementFromPage(By locator) {
+		return DRIVER.findElement(locator).getText();
 	}
 
-	public CommonMethods input(By locator, String input) {
+	public static void input(By locator, String input) {
 		waitElementVisibilityAndBeClickable(locator);
-		browser.findElement(locator).clear();
-		browser.findElement(locator).sendKeys(input);
-		return this;
+		DRIVER.findElement(locator).clear();
+		DRIVER.findElement(locator).sendKeys(input);
 	}
 
-	public void waitElementAppearOnScreen(By locator) {
-		
-		//Este elemento foi comentado devido a problemas para rodar multiplos testes
-		//getWaitDriver().until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+	public static void waitElementAppearOnScreen(By locator) {
+
+		// Este elemento foi comentado devido a problemas para rodar multiplos testes
+		getWaitDriver().until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
 		getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
-	public void waitElementVisibilityAndBeClickable(By locator) {
+	public static void waitElementVisibilityAndBeClickable(By locator) {
 		waitElementAppearOnScreen(locator);
 		getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
-	public WebDriverWait getWaitDriver() {
+	public static WebDriverWait getWaitDriver() {
 		if (waitDriver == null) {
-			waitDriver = new WebDriverWait(browser, 10);
+			waitDriver = new WebDriverWait(DRIVER, 10);
 		}
 		return waitDriver;
 	}
 
-	public void switchToNewWindowPage() {
-		for (String winHandle : browser.getWindowHandles()) {
-			browser.switchTo().window(winHandle);
+	public static void switchToNewWindowPage() {
+		for (String winHandle : DRIVER.getWindowHandles()) {
+			DRIVER.switchTo().window(winHandle);
 		}
 	}
-	
+
 	public void shouldBeAccessTheLocalDevelopment() {
 
-		new HomePage(browser)
-			.localDevelopmentLink()
-			.typeEmailAddressOnLoginForm()
-			.typePasswordOnLoginForm()
-			.clickOnSignInButton();
+		new HomePage().localDevelopmentLink();
+		new LoginPage().typeEmailAddressOnLoginForm();
+		new LoginPage().typePasswordOnLoginForm();
+		new LoginPage().clickOnSignInButton();
 	}
 
 }
