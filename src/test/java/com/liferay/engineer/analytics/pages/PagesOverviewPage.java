@@ -22,7 +22,7 @@ public class PagesOverviewPage extends CommonMethods {
 	private static final By itemActiveByViewsByTechnologyLocator = xpath(
 			"//*[text()=\'Views by Technology\']/following::button[1]");
 	private static final By itemActiveByAssetsLocator = xpath(
-			"//*[text()=\'Assets\']/following::button");
+			"//*[text()=\'Assets\']/following::button[8]");
 	private static final By firstAssertLinksToWebContentLocator = xpath(
 			"//*[@class=\'font-weight-semibold text-truncate-inline\']");
 	private static final By erroMessageNoDataMatchingFromAssetsCardLocator = xpath(

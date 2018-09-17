@@ -17,11 +17,8 @@ import com.liferay.engineer.analytics.tests.Cerebro_1135Test;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-
 		Cerebro_1135Test.class
-
 })
-
 public class RunAllTests {
 	public static Boolean _runnedFromAllTestsSuite = false;
 

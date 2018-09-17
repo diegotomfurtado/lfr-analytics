@@ -63,12 +63,20 @@ public class CommonMethods {
 		}
 	}
 
-	public void shouldBeAccessTheLocalDevelopment() {
+	public void shouldBeAccessTheLocalDevelopment(boolean firstLogin) {
 
-		new HomePage().localDevelopmentLink();
+		if (firstLogin) {
+			new HomePage().localDevelopmentLink();
+			performLogin();
+		} else {
+			new HomePage().localDevelopmentLink();
+		}
+	}
+	
+	private void performLogin() {
 		new LoginPage().typeEmailAddressOnLoginForm();
 		new LoginPage().typePasswordOnLoginForm();
-		new LoginPage().clickOnSignInButton();
+		new LoginPage().clickOnSignInButton();			
 	}
 
 }
