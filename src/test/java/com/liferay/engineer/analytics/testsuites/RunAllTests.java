@@ -15,6 +15,12 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.liferay.engineer.analytics.tests.Cerebro_1135Test;
 
+/*
+*
+*@Author: Diego Furtado
+*QA Consultant - Liferay Inc.
+*/
+
 @RunWith(Suite.class)
 @SuiteClasses({
 		Cerebro_1135Test.class

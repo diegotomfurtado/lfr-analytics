@@ -6,8 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.liferay.engineer.analytics.pages.AnalyticsCloudHomePage;
+import com.liferay.engineer.analytics.pages.AnalyticsCloudProjectPage;
 import com.liferay.engineer.analytics.pages.HomePage;
 import com.liferay.engineer.analytics.pages.LoginPage;
+import com.liferay.engineer.analytics.pages.PagesOverviewPage;
+import com.liferay.engineer.analytics.pages.PagesPage;
 
 /*
 *
@@ -17,6 +21,11 @@ import com.liferay.engineer.analytics.pages.LoginPage;
 public class CommonMethods {
 
 	private static WebDriverWait waitDriver = null;
+
+	private static final PagesPage pagesPage = new PagesPage();
+	private static final PagesOverviewPage pagesOverviewPage = new PagesOverviewPage();
+	private static final AnalyticsCloudProjectPage analyticsCloudProjectPage = new AnalyticsCloudProjectPage();
+	private static final AnalyticsCloudHomePage analyticsCloudHomePage = new AnalyticsCloudHomePage();
 
 	public static void clickOnButton(By locator) {
 		waitElementVisibilityAndBeClickable(locator);
@@ -72,11 +81,26 @@ public class CommonMethods {
 			new HomePage().localDevelopmentLink();
 		}
 	}
-	
+
 	private void performLogin() {
+
 		new LoginPage().typeEmailAddressOnLoginForm();
 		new LoginPage().typePasswordOnLoginForm();
-		new LoginPage().clickOnSignInButton();			
+		new LoginPage().clickOnSignInButton();
+	}
+
+	public static void goToPagesPage() {
+
+		analyticsCloudProjectPage.selectCustomerLiferayComProject();
+		analyticsCloudHomePage.clickOnPagesLinkFromMenu();
+	}
+
+	public static void goToWebContentPage() {
+
+		pagesPage.orderByViewsFromOrderDropdown();
+		pagesPage.changeAPerpectiveOfCursor();
+		pagesPage.selectLinkFromPagesList();
+		pagesOverviewPage.selectLinkFromAssertCardList();
 	}
 
 }
