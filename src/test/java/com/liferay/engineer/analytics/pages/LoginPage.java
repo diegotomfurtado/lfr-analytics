@@ -1,5 +1,7 @@
 package com.liferay.engineer.analytics.pages;
 
+import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultPassword;
+import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultUsername;
 import static org.openqa.selenium.By.xpath;
 
 import org.openqa.selenium.By;
@@ -7,8 +9,8 @@ import org.openqa.selenium.By;
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
 /**
-* @author Diego Furtado
-*/
+ * @author Diego Furtado
+ */
 public class LoginPage {
 
 	CommonMethods commonMethods = new CommonMethods();
@@ -17,17 +19,14 @@ public class LoginPage {
 	private final static By passwordFieldLocator = xpath(".//*[contains(@id,\'LoginPortlet_password\') and @type]");
 	private final static By signInButtonLocator = xpath(".//*[contains(@class,\'btn-primary\')]");
 
-	private static final String liferayPortalUser = "test@liferay.com";
-	private static final String liferayPortalPass = "test";
-
 	public void typeEmailAddressOnLoginForm() {
 		commonMethods.switchToNewWindowPage();
-		commonMethods.input(emailAddressFieldLocator, liferayPortalUser);
+		commonMethods.input(emailAddressFieldLocator, getDefaultUsername());
 	}
 
 	public void typePasswordOnLoginForm() {
 
-		commonMethods.input(passwordFieldLocator, liferayPortalPass);
+		commonMethods.input(passwordFieldLocator, getDefaultPassword());
 	}
 
 	public void clickOnSignInButton() {
