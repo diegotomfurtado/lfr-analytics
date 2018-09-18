@@ -1,10 +1,10 @@
 package com.liferay.engineer.analytics.utils;
 
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
+import static com.liferay.gs.testFramework.SeleniumWaitMethods.getWaitDriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.liferay.engineer.analytics.pages.AnalyticsCloudHomePage;
 import com.liferay.engineer.analytics.pages.AnalyticsCloudProjectPage;
@@ -13,94 +13,84 @@ import com.liferay.engineer.analytics.pages.LoginPage;
 import com.liferay.engineer.analytics.pages.PagesOverviewPage;
 import com.liferay.engineer.analytics.pages.PagesPage;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
-*/
+/**
+ * @author Diego Furtado
+ */
 public class CommonMethods {
 
-	private static WebDriverWait waitDriver = null;
-
 	private static final PagesPage pagesPage = new PagesPage();
+	private static final HomePage homePage = new HomePage();
+	private static final LoginPage loginPage = new LoginPage();
 	private static final PagesOverviewPage pagesOverviewPage = new PagesOverviewPage();
 	private static final AnalyticsCloudProjectPage analyticsCloudProjectPage = new AnalyticsCloudProjectPage();
 	private static final AnalyticsCloudHomePage analyticsCloudHomePage = new AnalyticsCloudHomePage();
 
-	public static void clickOnButton(By locator) {
+	public void clickOnButton(By locator) {
 		waitElementVisibilityAndBeClickable(locator);
 		DRIVER.findElement(locator).click();
 	}
 
-	public static void clickOnLink(By locator) {
+	public void clickOnLink(By locator) {
 		waitElementVisibilityAndBeClickable(locator);
 		DRIVER.findElement(locator).click();
 	}
 
-	public static String returnElementFromPage(By locator) {
+	public String returnElementFromPage(By locator) {
 		return DRIVER.findElement(locator).getText();
 	}
 
-	public static void input(By locator, String input) {
+	public void input(By locator, String input) {
 		waitElementVisibilityAndBeClickable(locator);
 		DRIVER.findElement(locator).clear();
 		DRIVER.findElement(locator).sendKeys(input);
 	}
 
-	public static void waitElementAppearOnScreen(By locator) {
+	public void waitElementAppearOnScreen(By locator) {
 
-		// Este elemento foi comentado devido a problemas para rodar multiplos testes
 		getWaitDriver().until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
 		getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
-	public static void waitElementVisibilityAndBeClickable(By locator) {
+	public void waitElementVisibilityAndBeClickable(By locator) {
 		waitElementAppearOnScreen(locator);
 		getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
-	public static WebDriverWait getWaitDriver() {
-		if (waitDriver == null) {
-			waitDriver = new WebDriverWait(DRIVER, 10);
-		}
-		return waitDriver;
-	}
-
-	public static void switchToNewWindowPage() {
+	public void switchToNewWindowPage() {
 		for (String winHandle : DRIVER.getWindowHandles()) {
 			DRIVER.switchTo().window(winHandle);
 		}
 	}
 
-	public void shouldBeAccessTheLocalDevelopment(boolean firstLogin) {
+	public static void shouldBeAccessTheLocalDevelopment(boolean firstLogin) {
 
 		if (firstLogin) {
-			new HomePage().localDevelopmentLink();
+			homePage.clickOnLocalDevelopmentLink();
 			performLogin();
 		} else {
-			new HomePage().localDevelopmentLink();
+			homePage.clickOnLocalDevelopmentLink();
 		}
 	}
 
-	private void performLogin() {
+	private static void performLogin() {
 
-		new LoginPage().typeEmailAddressOnLoginForm();
-		new LoginPage().typePasswordOnLoginForm();
-		new LoginPage().clickOnSignInButton();
+		loginPage.typeEmailAddressOnLoginForm();
+		loginPage.typePasswordOnLoginForm();
+		loginPage.clickOnSignInButton();
 	}
 
-	public static void goToPagesPage() {
+	public void goToPagesPage() {
 
-		analyticsCloudProjectPage.selectCustomerLiferayComProject();
+		analyticsCloudProjectPage.clickOnCustomerLiferayComProject();
 		analyticsCloudHomePage.clickOnPagesLinkFromMenu();
 	}
 
-	public static void goToWebContentPage() {
+	public void goToWebContentPage() {
 
-		pagesPage.orderByViewsFromOrderDropdown();
-		pagesPage.changeAPerpectiveOfCursor();
-		pagesPage.selectLinkFromPagesList();
-		pagesOverviewPage.selectLinkFromAssertCardList();
+		pagesPage.clickOnOrderByViews_DropdownList();
+		pagesPage.clickOutToChangeAPerpectiveOfCursor();
+		pagesPage.clickOnLinkFromPagesList();
+		pagesOverviewPage.clickOnLinkFromAssertCardList();
 	}
 
 }

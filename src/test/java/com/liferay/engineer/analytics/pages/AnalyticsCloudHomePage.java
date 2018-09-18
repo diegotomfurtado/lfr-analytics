@@ -6,18 +6,17 @@ import org.openqa.selenium.By;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
-public class AnalyticsCloudHomePage extends CommonMethods {
+public class AnalyticsCloudHomePage {
 
 	private static final By pagesLinkLocator = xpath("//*[contains(@class,\'button-root\')]//*[text()=\'Pages\']");
+	private final CommonMethods commonMethods = new CommonMethods();
 	
 	public void clickOnPagesLinkFromMenu() {
 
-		clickOnLink(pagesLinkLocator);
+		commonMethods.clickOnLink(pagesLinkLocator);
 	}
 	
 }

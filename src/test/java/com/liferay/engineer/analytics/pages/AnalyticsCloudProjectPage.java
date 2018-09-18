@@ -6,18 +6,18 @@ import org.openqa.selenium.By;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
-public class AnalyticsCloudProjectPage extends CommonMethods {
+public class AnalyticsCloudProjectPage {
+
+	CommonMethods commonMethods = new CommonMethods();
 
 	private static final By customerLiferayLocator = xpath(".//a[text() = \'customer.liferay.com\']");
 
-	public void selectCustomerLiferayComProject() {
+	public void clickOnCustomerLiferayComProject() {
 
-		clickOnLink(customerLiferayLocator);
+		commonMethods.clickOnLink(customerLiferayLocator);
 	}
 
 }

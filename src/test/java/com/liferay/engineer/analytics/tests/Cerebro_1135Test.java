@@ -3,7 +3,10 @@ package com.liferay.engineer.analytics.tests;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.DRIVER;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getTimeOut;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getUrlToHome;
+
 import static org.junit.Assert.assertTrue;
+
+import static com.liferay.engineer.analytics.utils.CommonMethods.shouldBeAccessTheLocalDevelopment;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,14 +21,13 @@ import com.liferay.engineer.analytics.pages.WebContentFromAssestsPage;
 import com.liferay.engineer.analytics.utils.CommonMethods;
 import com.liferay.engineer.analytics.utils.FunctionalTest;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
 public class Cerebro_1135Test extends FunctionalTest {
 
 	private final PagesOverviewPage pagesOverviewPage = new PagesOverviewPage();
+	private final CommonMethods commonMethods = new CommonMethods();
 	private final WebContentFromAssestsPage webContentFromAssestsPage = new WebContentFromAssestsPage();
 	private static final PagesPage pagesPage = new PagesPage();
 
@@ -35,20 +37,20 @@ public class Cerebro_1135Test extends FunctionalTest {
 		DRIVER.manage().timeouts().implicitlyWait(getTimeOut(), TimeUnit.SECONDS);
 		DRIVER.get(getUrlToHome());
 
-		new CommonMethods().shouldBeAccessTheLocalDevelopment(true);
+		shouldBeAccessTheLocalDevelopment(true);
 	}
 
 	@Before
 	public void setUp() {
 
-		CommonMethods.switchToNewWindowPage();
+		commonMethods.switchToNewWindowPage();
 	}
 
 	@After
 	public void teardown() {
 		DRIVER.close();
-		CommonMethods.switchToNewWindowPage();
-		new CommonMethods().shouldBeAccessTheLocalDevelopment(false);
+		commonMethods.switchToNewWindowPage();
+		shouldBeAccessTheLocalDevelopment(false);
 	}
 
 	/*
@@ -59,310 +61,310 @@ public class Cerebro_1135Test extends FunctionalTest {
 	@Test
 	public void last24Hours_isValidPeriodTimeOnPagesToReflectOnChildrenPages_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.returnElement_ByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last24Hours_isValidPeriodTimeOnPagesToReflectOnChildrenPages_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.returnElement_ByViewsBySegments()));
 	}
 
 	@Test
 	public void last24Hours_isValidPeriodTimeOnPagesToReflectOnChildrenPages_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.returnElement_ByLocations()));
 	}
 
 	@Test
 	public void last24Hours_isValidPeriodTimeOnPagesToReflectOnChildrenPages_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.returnElement_ByLocations()));
 	}
 
 	@Test
 	public void last24Hours_isValidPeriodTimeOnPagesToReflectOnChildrenPages_ByAssets() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.checkDropdownItemActiveByAssets()));
+		assertTrue("Last 24 hours".contentEquals(pagesOverviewPage.returnElement_ByAssets()));
 	}
 
 	@Test
 	public void yesterday_isValidPeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Yesterday".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Yesterday".contentEquals(pagesOverviewPage.returnElement_ByVisitorsBehavior()));
 	}
 
 	@Test
 	public void yesterday_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Yesterday".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Yesterday".contentEquals(pagesOverviewPage.returnElement_ByViewsBySegments()));
 	}
 
 	@Test
 	public void yesterday_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Yesterday".contentEquals(pagesOverviewPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Yesterday".contentEquals(pagesOverviewPage.returnElement_ByLocations()));
 	}
 
 	@Test
 	public void yesterday_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Yesterday".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsByTechnology()));
+		assertTrue("Yesterday".contentEquals(pagesOverviewPage.returnElement_ByViewsByTechnology()));
 	}
 
 	@Test
 	public void yesterday_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByAssets() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Yesterday".contentEquals(pagesOverviewPage.checkDropdownItemActiveByAssets()));
+		assertTrue("Yesterday".contentEquals(pagesOverviewPage.returnElement_ByAssets()));
 	}
 
 	@Test
 	public void last7Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.returnElement_ByVisitorsBehavior()));
 
 	}
 
 	@Test
 	public void last7Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.returnElement_ByViewsBySegments()));
 
 	}
 
 	@Test
 	public void last7Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.returnElement_ByLocations()));
 
 	}
 
 	@Test
 	public void last7Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsByTechnology()));
+		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.returnElement_ByViewsByTechnology()));
 
 	}
 
 	@Test
 	public void last7Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByAssets() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByAssets()));
+		assertTrue("Last 7 days".contentEquals(pagesOverviewPage.returnElement_ByAssets()));
 
 	}
 
 	@Test
 	public void last28Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.returnElement_ByVisitorsBehavior()));
 
 	}
 
 	@Test
 	public void last28Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.returnElement_ByViewsBySegments()));
 	}
 
 	@Test
 	public void last28Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.returnElement_ByLocations()));
 
 	}
 
 	@Test
 	public void last28Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsByTechnology()));
+		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.returnElement_ByViewsByTechnology()));
 
 	}
 
 	@Test
 	public void last28Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByAssets() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByAssets()));
+		assertTrue("Last 28 days".contentEquals(pagesOverviewPage.returnElement_ByAssets()));
 
 	}
 
 	@Test
 	public void last30Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.returnElement_ByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last30Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.returnElement_ByViewsBySegments()));
 	}
 
 	@Test
 	public void last30Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.returnElement_ByLocations()));
 	}
 
 	@Test
 	public void last30Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsByTechnology()));
+		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.returnElement_ByViewsByTechnology()));
 	}
 
 	@Test
 	public void last30Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByAssets() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByAssets()));
+		assertTrue("Last 30 days".contentEquals(pagesOverviewPage.returnElement_ByAssets()));
 	}
 
 	@Test
 	public void last90Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.returnElement_ByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last90Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_BySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.returnElement_ByViewsBySegments()));
 	}
 
 	@Test
 	public void last90Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.returnElement_ByLocations()));
 	}
 
 	@Test
 	public void last90Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByViewsByTechnology()));
+		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.returnElement_ByViewsByTechnology()));
 	}
 
 	@Test
 	public void last90Days_PeriodTimeOnPagesMustToReflectAtTheChildrenPages_ByAssets() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		pagesPage.selectLinkFromPagesList();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		pagesPage.clickOnLinkFromPagesList();
 
-		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.checkDropdownItemActiveByAssets()));
+		assertTrue("Last 90 days".contentEquals(pagesOverviewPage.returnElement_ByAssets()));
 	}
 
 	/*
@@ -373,305 +375,306 @@ public class Cerebro_1135Test extends FunctionalTest {
 	@Test
 	public void last24Hours_periodTimeOnWebContentPageMustToReflectFromPageParent_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		commonMethods.goToWebContentPage();
 
 		assertTrue(
-				"Last 24 hours".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
+				"Last 24 hours".contentEquals(webContentFromAssestsPage.returnElement_ActiveByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last24Hours_periodTimeOnWebContentPageMustToReflectFromPageParent_BySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsBySegments()));
 	}
 
 	@Test
 	public void last24Hours_periodTimeOnWebContentPageMustToReflectFromPageParent_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.returnElement_ActiveByLocations()));
 	}
 
 	@Test
 	public void last24Hours_periodTimeOnWebContentPageMustToReflectFromPageParent_ByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		commonMethods.goToWebContentPage();
 
 		assertTrue(
-				"Last 24 hours".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsByTechnology()));
+				"Last 24 hours".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsByTechnology()));
 	}
 
 	@Test
 	public void last24Hours_periodTimeOnWebContentPageMustToReflectFromPageParent_ByAssetAppearsOn() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast24HoursPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last24Hours_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByAssetAppearsOn()));
+		assertTrue("Last 24 hours".contentEquals(webContentFromAssestsPage.returnElement_ActiveByAssetAppearsOn()));
 	}
 
 	@Test
 	public void yesterday_periodTimeOnWebContentPageMustToReflectFromPageParent_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		
-		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		commonMethods.goToWebContentPage();
+
+		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.returnElement_ActiveByVisitorsBehavior()));
 	}
 
 	@Test
 	public void yesterday_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsBySegments()));
 	}
 
 	@Test
 	public void yesterday_periodTimeOnWebContentPageMustToReflectFromPageParent_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.returnElement_ActiveByLocations()));
 	}
 
 	@Test
 	public void yesterday_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsByTechnology()));
+		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsByTechnology()));
 	}
 
 	@Test
 	public void yesterday_periodTimeOnWebContentPageMustToReflectFromPageParent_ByAssetAppearsOn() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectYesterdayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Yesterday_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByAssetAppearsOn()));
+		assertTrue("Yesterday".contentEquals(webContentFromAssestsPage.returnElement_ActiveByAssetAppearsOn()));
 	}
 
 	@Test
 	public void last7Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last7Days_periodTimeOnWebContentPageMustToReflectFromPageParent_BySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsBySegments()));
 	}
 
 	@Test
 	public void last7Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByLocations()));
 	}
 
 	@Test
 	public void last7Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsByTechnology()));
+		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsByTechnology()));
 	}
 
 	@Test
 	public void last7Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByAssetAppearsOn() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast7DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last7Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByAssetAppearsOn()));
+		assertTrue("Last 7 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByAssetAppearsOn()));
 	}
 
 	@Test
 	public void last28Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last28Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsBySegments()));
 	}
 
 	@Test
 	public void last28Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByLocations()));
 	}
 
 	@Test
 	public void last28Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
 		assertTrue(
-				"Last 28 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsByTechnology()));
+				"Last 28 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsByTechnology()));
 	}
 
 	@Test
 	public void last28Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByAssetAppearsOn() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast28DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last28Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByAssetAppearsOn()));
+		assertTrue("Last 28 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByAssetAppearsOn()));
 	}
 
 	@Test
 	public void last30Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last30Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsBySegments()));
 	}
 
 	@Test
 	public void last30Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByLocations()));
 	}
 
 	@Test
 	public void last30Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
 		assertTrue(
-				"Last 30 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsByTechnology()));
+				"Last 30 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsByTechnology()));
 	}
 
 	@Test
 	public void last30Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByAssetAppearsOn() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast30DaysPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last30Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByAssetAppearsOn()));
+		assertTrue("Last 30 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByAssetAppearsOn()));
 	}
 
 	@Test
 	public void last90Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByVisitorsBehavior() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByVisitorsBehavior()));
+		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByVisitorsBehavior()));
 	}
 
 	@Test
 	public void last90Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByViewsBySegments() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsBySegments()));
+		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsBySegments()));
 	}
 
 	@Test
 	public void last90Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByLocations() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByLocations()));
+		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByLocations()));
 	}
 
 	@Test
 	public void last90Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByTechnology() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
 		assertTrue(
-				"Last 90 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByViewsByTechnology()));
+				"Last 90 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByViewsByTechnology()));
 	}
 
 	@Test
 	public void last90Days_periodTimeOnWebContentPageMustToReflectFromPageParent_ByAssetAppearsOn() {
 
-		CommonMethods.goToPagesPage();
-		pagesPage.selectLast90DayPeriodTimeFromPagesDropdownList();
-		CommonMethods.goToWebContentPage();
+		commonMethods.goToPagesPage();
+		pagesPage.clickOnDropdownList_Last90Days_PagesPage();
+		commonMethods.goToWebContentPage();
 
-		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.checkDropdownItemActiveByAssetAppearsOn()));
+		assertTrue("Last 90 days".contentEquals(webContentFromAssestsPage.returnElement_ActiveByAssetAppearsOn()));
 	}
 
 }

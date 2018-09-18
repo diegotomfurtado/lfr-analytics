@@ -4,21 +4,15 @@ import static com.liferay.gs.testFramework.SeleniumWaitMethods.waitMediumTime;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
-*/
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import com.liferay.engineer.analytics.tests.Cerebro_1135Test;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
 
 @RunWith(Suite.class)

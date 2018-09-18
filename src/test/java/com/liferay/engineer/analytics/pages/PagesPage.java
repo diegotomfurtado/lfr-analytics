@@ -6,110 +6,102 @@ import org.openqa.selenium.By;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
-*/
-public class PagesPage extends CommonMethods {
+/**
+ * @author Diego Furtado
+ */
+public class PagesPage {
+
+	private final CommonMethods commonMethods = new CommonMethods();
 
 	private static final By dropdownPeriodTimeLocator = xpath(
 			"//*[@class=\'analytics-dropdown dropdown btn-group border-0\']");
-	private static final By elementFromDropdownItemActiveLocator = xpath(
-			"//*[@class=\'dropdown-item active\']");
+	private static final By elementFromDropdownItemActiveLocator = xpath("//*[@class=\'dropdown-item active\']");
 	private static final By anElementFromPageListLocator = xpath(
 			"//*[@class=\'table-cell-expand table-first-column\']/child::*");
-	private static final By last24HoursPeriodTimeLocator = xpath(
-			"//*[@data-value=\'0\']");
-	private static final By lastYesterdayPeriodTimeLocator = xpath(
-			"//*[@data-value=\'1\']");
-	private static final By last7DaysPeriodTimeLocator = xpath(
-			"//*[@data-value=\'7\']");
-	private static final By last28DaysPeriodTimeLocator = xpath(
-			"//*[@data-value=\'28\']");
-	private static final By last30DaysPeriodTimeLocator = xpath(
-			"//*[@data-value=\"30\"]");
-	private static final By last90DaysPeriodTimeLocator = xpath(
-			"//*[@data-value=\'90\']");
+	private static final By last24HoursPeriodTimeLocator = xpath("//*[@data-value=\'0\']");
+	private static final By lastYesterdayPeriodTimeLocator = xpath("//*[@data-value=\'1\']");
+	private static final By last7DaysPeriodTimeLocator = xpath("//*[@data-value=\'7\']");
+	private static final By last28DaysPeriodTimeLocator = xpath("//*[@data-value=\'28\']");
+	private static final By last30DaysPeriodTimeLocator = xpath("//*[@data-value=\"30\"]");
+	private static final By last90DaysPeriodTimeLocator = xpath("//*[@data-value=\'90\']");
 	private static final By erroMessageNoDataMatching = xpath(
 			"//*[contains(@class,\'m-auto pl-4 pr-4 position-relative\')]");
 	private static final By orderDropdownListLocator = xpath(
 			"//*[contains(@class,\'button-root\') and text()=\'Order\']");
 	private static final By selectViewsOptionFromOrderDropdown = xpath(
 			"//*[@class=\'custom-control-label-text\' and text()=\'Views\']");
-	private static final By selectAnyRegionOnPagesLocator = xpath(
-			"//*[@class=\'d-flex align-items-end\']");
+	private static final By selectAnyRegionOnPagesLocator = xpath("//*[@class=\'d-flex align-items-end\']");
 
-	public String erroMessageNoDataMatching() {
+	public String returnElementErroMessageNoDataMatching() {
 
-		return returnElementFromPage(erroMessageNoDataMatching);
+		return commonMethods.returnElementFromPage(erroMessageNoDataMatching);
 	}
 
-	public void selectADropdownListFromPeriodTime() {
+	public void clickOnDropdownListFromPeriodTime() {
 
-		clickOnButton(dropdownPeriodTimeLocator);
+		commonMethods.clickOnButton(dropdownPeriodTimeLocator);
 	}
 
-	public void selectLast24HoursPeriodTimeFromPagesDropdownList() {
+	public void clickOnDropdownList_Last24Hours_PagesPage() {
 
-		selectADropdownListFromPeriodTime();
-		clickOnLink(last24HoursPeriodTimeLocator);
+		clickOnDropdownListFromPeriodTime();
+		commonMethods.clickOnLink(last24HoursPeriodTimeLocator);
 	}
 
-	public void selectYesterdayPeriodTimeFromPagesDropdownList() {
+	public void clickOnDropdownList_Yesterday_PagesPage() {
 
-		selectADropdownListFromPeriodTime();
-		clickOnLink(lastYesterdayPeriodTimeLocator);
+		clickOnDropdownListFromPeriodTime();
+		commonMethods.clickOnLink(lastYesterdayPeriodTimeLocator);
 	}
 
-	public void selectLast7DaysPeriodTimeFromPagesDropdownList() {
+	public void clickOnDropdownList_Last7Days_PagesPage() {
 
-		selectADropdownListFromPeriodTime();
-		clickOnLink(last7DaysPeriodTimeLocator);
+		clickOnDropdownListFromPeriodTime();
+		commonMethods.clickOnLink(last7DaysPeriodTimeLocator);
 	}
 
-	public void selectLast28DaysPeriodTimeFromPagesDropdownList() {
+	public void clickOnDropdownList_Last28Days_PagesPage() {
 
-		selectADropdownListFromPeriodTime();
-		clickOnLink(last28DaysPeriodTimeLocator);
+		clickOnDropdownListFromPeriodTime();
+		commonMethods.clickOnLink(last28DaysPeriodTimeLocator);
 	}
 
-	public void selectLast30DaysPeriodTimeFromPagesDropdownList() {
+	public void clickOnDropdownList_Last30Days_PagesPage() {
 
-		selectADropdownListFromPeriodTime();
-		clickOnLink(last30DaysPeriodTimeLocator);
+		clickOnDropdownListFromPeriodTime();
+		commonMethods.clickOnLink(last30DaysPeriodTimeLocator);
 	}
 
-	public void selectLast90DayPeriodTimeFromPagesDropdownList() {
+	public void clickOnDropdownList_Last90Days_PagesPage() {
 
-		selectADropdownListFromPeriodTime();
-		clickOnLink(last90DaysPeriodTimeLocator);
+		clickOnDropdownListFromPeriodTime();
+		commonMethods.clickOnLink(last90DaysPeriodTimeLocator);
 	}
 
-	public String checkDropdownItemActive() {
+	public String returnElementFromDropdownItemActive() {
 
-		return returnElementFromPage(elementFromDropdownItemActiveLocator);
+		return commonMethods.returnElementFromPage(elementFromDropdownItemActiveLocator);
 	}
 
-	public void selectLinkFromPagesList() {
+	public void clickOnLinkFromPagesList() {
 
-		clickOnLink(anElementFromPageListLocator);
+		commonMethods.clickOnLink(anElementFromPageListLocator);
 	}
 
-	public void selectOrderDropdownList() {
+	public void clickOnOrder_DropdownList() {
 
-		clickOnButton(orderDropdownListLocator);
+		commonMethods.clickOnButton(orderDropdownListLocator);
 	}
 
-	public void orderByViewsFromOrderDropdown() {
+	public void clickOnOrderByViews_DropdownList() {
 
-		selectOrderDropdownList();
-		clickOnButton(selectViewsOptionFromOrderDropdown);
+		clickOnOrder_DropdownList();
+		commonMethods.clickOnButton(selectViewsOptionFromOrderDropdown);
 	}
 
-	public void changeAPerpectiveOfCursor() {
+	public void clickOutToChangeAPerpectiveOfCursor() {
 
-		clickOnButton(selectAnyRegionOnPagesLocator);
+		commonMethods.clickOnButton(selectAnyRegionOnPagesLocator);
 	}
 
 }

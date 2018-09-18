@@ -6,12 +6,12 @@ import org.openqa.selenium.By;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
-public class WebContentFromAssestsPage extends CommonMethods {
+public class WebContentFromAssestsPage {
+	
+	private final CommonMethods commonMethods = new CommonMethods();
 
 	private static final By itemActiveByVisitorsBehaviorLocator = xpath(
 			"//*[@class=\'card analytics-metrics-card\']//*[contains(@class,\'button-root\')]");
@@ -24,29 +24,29 @@ public class WebContentFromAssestsPage extends CommonMethods {
 	private static final By itemActiveByAssetAppearsOnLocator = xpath(
 			"//div[text()=\"Asset Appears On\"]/following::div[2]/button");
 
-	public String checkDropdownItemActiveByVisitorsBehavior() {
+	public String returnElement_ActiveByVisitorsBehavior() {
 		
-		return returnElementFromPage(itemActiveByVisitorsBehaviorLocator);
+		return commonMethods.returnElementFromPage(itemActiveByVisitorsBehaviorLocator);
 	}
 
-	public String checkDropdownItemActiveByViewsBySegments() {
+	public String returnElement_ActiveByViewsBySegments() {
 		
-		return returnElementFromPage(itemActiveByViewsBySegmentsLocator);
+		return commonMethods.returnElementFromPage(itemActiveByViewsBySegmentsLocator);
 	}
 
-	public String checkDropdownItemActiveByLocations() {
+	public String returnElement_ActiveByLocations() {
 
-		return returnElementFromPage(itemActiveByLocationsLocator);
+		return commonMethods.returnElementFromPage(itemActiveByLocationsLocator);
 	}
 
-	public String checkDropdownItemActiveByViewsByTechnology() {
+	public String returnElement_ActiveByViewsByTechnology() {
 		
-		return returnElementFromPage(itemActiveByViewsByTechnologyLocator);
+		return commonMethods.returnElementFromPage(itemActiveByViewsByTechnologyLocator);
 	}
 
-	public String checkDropdownItemActiveByAssetAppearsOn() {
+	public String returnElement_ActiveByAssetAppearsOn() {
 		
-		return returnElementFromPage(itemActiveByAssetAppearsOnLocator);
+		return commonMethods.returnElementFromPage(itemActiveByAssetAppearsOnLocator);
 	}
 	
 }

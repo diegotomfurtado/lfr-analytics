@@ -6,18 +6,18 @@ import org.openqa.selenium.By;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
-public class HomePage extends CommonMethods {
+public class HomePage {
+
+	CommonMethods commonMethods = new CommonMethods();
 
 	private static final By localDevelopementLinkLocator = xpath("//*[text()=\'Local Development\']");
 
-	public void localDevelopmentLink() {
+	public void clickOnLocalDevelopmentLink() {
 
-		clickOnLink(localDevelopementLinkLocator);
+		commonMethods.clickOnLink(localDevelopementLinkLocator);
 	}
 
 }

@@ -1,9 +1,7 @@
 package com.liferay.engineer.analytics.execptions;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
 public class NoDataMatchingException extends Exception{
 	

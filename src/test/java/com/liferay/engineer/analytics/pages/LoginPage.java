@@ -6,34 +6,33 @@ import org.openqa.selenium.By;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
+/**
+* @author Diego Furtado
 */
-public class LoginPage extends CommonMethods{
+public class LoginPage {
+
+	CommonMethods commonMethods = new CommonMethods();
 
 	private final static By emailAddressFieldLocator = xpath(".//*[contains(@id,\'LoginPortlet_login\')and @type]");
 	private final static By passwordFieldLocator = xpath(".//*[contains(@id,\'LoginPortlet_password\') and @type]");
 	private final static By signInButtonLocator = xpath(".//*[contains(@class,\'btn-primary\')]");
-	
-	
+
 	private static final String liferayPortalUser = "test@liferay.com";
 	private static final String liferayPortalPass = "test";
-	
+
 	public void typeEmailAddressOnLoginForm() {
-		switchToNewWindowPage();
-		input(emailAddressFieldLocator, liferayPortalUser);
+		commonMethods.switchToNewWindowPage();
+		commonMethods.input(emailAddressFieldLocator, liferayPortalUser);
 	}
-	
+
 	public void typePasswordOnLoginForm() {
-		
-		input(passwordFieldLocator, liferayPortalPass);
+
+		commonMethods.input(passwordFieldLocator, liferayPortalPass);
 	}
 
 	public void clickOnSignInButton() {
-		
-		clickOnButton(signInButtonLocator);
+
+		commonMethods.clickOnButton(signInButtonLocator);
 	}
-	
+
 }

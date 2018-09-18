@@ -6,12 +6,12 @@ import org.openqa.selenium.By;
 
 import com.liferay.engineer.analytics.utils.CommonMethods;
 
-/*
-*
-*@Author: Diego Furtado
-*QA Consultant - Liferay Inc.
-*/
-public class PagesOverviewPage extends CommonMethods {
+/**
+ * @author Diego Furtado
+ */
+public class PagesOverviewPage {
+
+	CommonMethods commonMethods = new CommonMethods();
 
 	private static final By itemActiveByVisitorsBehaviorLocator = xpath(
 			"//*[@class=\'card analytics-metrics-card\']//*[contains(@class,\'button-root\')]");
@@ -28,38 +28,38 @@ public class PagesOverviewPage extends CommonMethods {
 	private static final By erroMessageNoDataMatchingFromAssetsCardLocator = xpath(
 			"//*[@class=\'m-auto pl-4 pr-4 position-relative text-center\']");
 
-	public String checkDropdownItemActiveByVisitorsBehavior() {
+	public String returnElement_ByVisitorsBehavior() {
 
-		return returnElementFromPage(itemActiveByVisitorsBehaviorLocator);
+		return commonMethods.returnElementFromPage(itemActiveByVisitorsBehaviorLocator);
 	}
 
-	public String checkDropdownItemActiveByViewsBySegments() {
+	public String returnElement_ByViewsBySegments() {
 
-		return returnElementFromPage(itemActiveByViewsBySegmentsLocator);
+		return commonMethods.returnElementFromPage(itemActiveByViewsBySegmentsLocator);
 	}
 
-	public String checkDropdownItemActiveByLocations() {
+	public String returnElement_ByLocations() {
 
-		return returnElementFromPage(itemActiveByLocationsLocator);
+		return commonMethods.returnElementFromPage(itemActiveByLocationsLocator);
 	}
 
-	public String checkDropdownItemActiveByViewsByTechnology() {
+	public String returnElement_ByViewsByTechnology() {
 
-		return returnElementFromPage(itemActiveByViewsByTechnologyLocator);
+		return commonMethods.returnElementFromPage(itemActiveByViewsByTechnologyLocator);
 	}
 
-	public String checkDropdownItemActiveByAssets() {
+	public String returnElement_ByAssets() {
 
-		return returnElementFromPage(itemActiveByAssetsLocator);
+		return commonMethods.returnElementFromPage(itemActiveByAssetsLocator);
 	}
 
-	public void selectLinkFromAssertCardList() {
+	public void clickOnLinkFromAssertCardList() {
 
-		clickOnLink(firstAssertLinksToWebContentLocator);
+		commonMethods.clickOnLink(firstAssertLinksToWebContentLocator);
 	}
 
-	public String erroMessageNoDataMactchingFromAssestCard() {
+	public String returnElement_ErroMessage_NoDataMactchingFromAssestCard() {
 
-		return returnElementFromPage(erroMessageNoDataMatchingFromAssetsCardLocator);
+		return commonMethods.returnElementFromPage(erroMessageNoDataMatchingFromAssetsCardLocator);
 	}
 }
