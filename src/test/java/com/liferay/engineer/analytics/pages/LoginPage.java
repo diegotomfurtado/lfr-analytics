@@ -2,36 +2,37 @@ package com.liferay.engineer.analytics.pages;
 
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultPassword;
 import static com.liferay.gs.testFramework.SeleniumReadPropertyKeys.getDefaultUsername;
+
 import static org.openqa.selenium.By.xpath;
 
-import org.openqa.selenium.By;
-
 import com.liferay.engineer.analytics.utils.CommonMethods;
+
+import org.openqa.selenium.By;
 
 /**
  * @author Diego Furtado
  */
 public class LoginPage {
 
-	CommonMethods commonMethods = new CommonMethods();
-
-	private final static By emailAddressFieldLocator = xpath(".//*[contains(@id,\'LoginPortlet_login\')and @type]");
-	private final static By passwordFieldLocator = xpath(".//*[contains(@id,\'LoginPortlet_password\') and @type]");
-	private final static By signInButtonLocator = xpath(".//*[contains(@class,\'btn-primary\')]");
+	public void clickOnSignInButton() {
+		_commonMethods.clickOnButton(_signInButtonLocator);
+	}
 
 	public void typeEmailAddressOnLoginForm() {
-		commonMethods.switchToNewWindowPage();
-		commonMethods.input(emailAddressFieldLocator, getDefaultUsername());
+		_commonMethods.switchToNewWindowPage();
+		_commonMethods.input(_emailAddressFieldLocator, getDefaultUsername());
 	}
 
 	public void typePasswordOnLoginForm() {
-
-		commonMethods.input(passwordFieldLocator, getDefaultPassword());
+		_commonMethods.input(_passwordFieldLocator, getDefaultPassword());
 	}
 
-	public void clickOnSignInButton() {
-
-		commonMethods.clickOnButton(signInButtonLocator);
-	}
+	private static final CommonMethods _commonMethods = new CommonMethods();
+	private static final By _emailAddressFieldLocator = xpath(
+		".//*[contains(@id,\'LoginPortlet_login\')and @type]");
+	private static final By _passwordFieldLocator = xpath(
+		".//*[contains(@id,\'LoginPortlet_password\') and @type]");
+	private static final By _signInButtonLocator = xpath(
+		".//*[contains(@class,\'btn-primary\')]");
 
 }

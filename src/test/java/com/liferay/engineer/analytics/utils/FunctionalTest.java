@@ -1,15 +1,16 @@
 package com.liferay.engineer.analytics.utils;
 
+import com.liferay.engineer.analytics.testsuites.RunAllTests;
+
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+
 import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-
-import com.liferay.engineer.analytics.testsuites.RunAllTests;
 
 /**
  * @author Manoel Cyreno
